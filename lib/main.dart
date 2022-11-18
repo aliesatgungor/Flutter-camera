@@ -25,8 +25,8 @@ class _CameraAppState extends State<CameraApp> {
     controller = CameraController(
       cameras[1],
       ResolutionPreset.medium,
-      iso: 1000,
-      shutterSpeed: 10,
+      iso: 10,
+      shutterSpeed: 800,
       whiteBalance: WhiteBalancePreset.cloudy,
       focusDistance: 0.1,
     );
