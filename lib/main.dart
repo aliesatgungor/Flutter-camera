@@ -142,8 +142,9 @@ class _CameraAppState extends State<CameraApp> {
                           return;
                         }
                         setState(() {});
+                        // ignore: prefer_const_constructors
                         Future.delayed(Duration(
-                          milliseconds: 1000,
+                          milliseconds: 100,
                         ));
                       });
                     },
