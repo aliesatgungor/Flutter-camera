@@ -23,12 +23,12 @@ class _CameraAppState extends State<CameraApp> {
   void initState() {
     super.initState();
     controller = CameraController(
-      cameras[1],
+      cameras[0],
       ResolutionPreset.ultraHigh,
-      iso: 200,
-      shutterSpeed: 1000,
-      whiteBalance: WhiteBalancePreset.cloudy,
-      focusDistance: 0.1,
+      iso: 10,
+      shutterSpeed: 4000,
+      whiteBalance: WhiteBalancePreset.fluorescent,
+      focusDistance: 1,
     );
     controller.initialize().then((_) {
       if (!mounted) {
@@ -50,115 +50,7 @@ class _CameraAppState extends State<CameraApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'MartilarTK',
-        home: Scaffold(
-            appBar: AppBar(
-              title: const Text("For Martilartk"),
-            ),
-            body: SingleChildScrollView(
-                child: Column(children: [
-              AspectRatio(
-                  aspectRatio: controller.value.aspectRatio,
-                  child: CameraPreview(controller)),
-              Row(
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      controller.shutterSpeed = controller.shutterSpeed + 50;
-                      controller.initialize().then((_) {
-                        if (!mounted) {
-                          return;
-                        }
-                        setState(() {});
-                        Future.delayed(Duration(
-                          milliseconds: 1000,
-                        ));
-                      });
-                    },
-                    child: const Text("Shutter Arttır"),
-                    style: TextButton.styleFrom(
-                      minimumSize: const Size(30, 7),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(0)),
-                      backgroundColor: const Color(0xFF00c8ff),
-                      surfaceTintColor: const Color(0x0f000000),
-                    ),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      controller.shutterSpeed = controller.shutterSpeed - 50;
-                      controller.initialize().then((_) {
-                        if (!mounted) {
-                          return;
-                        }
-                        setState(() {});
-                        Future.delayed(Duration(
-                          milliseconds: 1000,
-                        ));
-                      });
-                    },
-                    child: const Text("Shutter Azalt"),
-                    style: TextButton.styleFrom(
-                      minimumSize: const Size(30, 7),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(0)),
-                      backgroundColor: const Color(0xFF00c8ff),
-                      surfaceTintColor: const Color(0x0f000000),
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      controller.iso = controller.iso + 20;
-
-                      controller.initialize().then((_) {
-                        if (!mounted) {
-                          return;
-                        }
-                        setState(() {});
-                        Future.delayed(Duration(
-                          milliseconds: 1000,
-                        ));
-                      });
-                    },
-                    child: const Text("iso Arttır"),
-                    style: TextButton.styleFrom(
-                      minimumSize: const Size(30, 7),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(0)),
-                      backgroundColor: const Color(0xFF00c8ff),
-                      surfaceTintColor: const Color(0x0f000000),
-                    ),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      controller.iso = controller.iso - 20;
-
-                      controller.initialize().then((_) {
-                        if (!mounted) {
-                          return;
-                        }
-                        setState(() {});
-                        // ignore: prefer_const_constructors
-                        Future.delayed(Duration(
-                          milliseconds: 100,
-                        ));
-                      });
-                    },
-                    child: const Text("iso Azalt"),
-                    style: TextButton.styleFrom(
-                      minimumSize: const Size(30, 7),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(0)),
-                      backgroundColor: const Color(0xFF00c8ff),
-                      surfaceTintColor: const Color(0x0f000000),
-                    ),
-                  ),
-                ],
-              ),
-            ]))));
+      home: Scaffold(body: CameraPreview(controller)),
+    );
   }
 }
